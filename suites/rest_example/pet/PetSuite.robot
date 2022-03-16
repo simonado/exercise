@@ -2,8 +2,8 @@
 Documentation    Test suite for pet api
 Resource    suiteKeywords.robot
 Resource    suiteResources/petjsons.robot
-Resource    ../../resources/global_variables.robot
-Resource    ../../resources//keywords/globalkeywords.robot
+Resource    ../../../resources/global_variables.robot
+Resource    ../../../resources/keywords/globalkeywords.robot
 Suite Setup     Initialize Pet Session
 Library    Collections
 Library    RequestsLibrary

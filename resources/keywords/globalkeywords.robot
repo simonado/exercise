@@ -20,39 +20,39 @@ Loop Out Index Value From List    [arguments]     ${list}   ${expectedvalue}
     [return]    ${i}
 
 Send Get Request      [arguments]  ${session}  ${path}  ${headers}  ${expresultstatus}=200
-    ${resp}=        Get Request    ${session}  ${path}  headers=${headers}
+    ${resp}=        Get On Session    ${session}  ${path}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings   ${resp.status_code}     ${expresultstatus}
     [return]    ${resp}
 
 Send Post Request      [arguments]  ${session}  ${path}  ${body}  ${headers}  ${expresultstatus}=200
-    ${resp}=        Post Request    ${session}  ${path}  ${body}  headers=${headers}
+    ${resp}=        Post On Session    ${session}  ${path}  ${body}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
 
 Send Post Request Without Rest Path      [arguments]  ${session}  ${body}  ${headers}  ${expresultstatus}=200
-    ${resp}=        Post Request    ${session}  /  data=${body}  headers=${headers}
+    ${resp}=        Post On Session   ${session}  /  data=${body}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
 
 Send Post Request With File      [arguments]  ${session}  ${path}   ${json}  ${file}  ${headers}  ${expresultstatus}=200
     log  ${file}
-    ${resp}=        Post Request    ${session}  ${path}  data=${json}   files=${file}  headers=${headers}
+    ${resp}=        Post On Session    ${session}  ${path}  data=${json}   files=${file}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
 
 Send Put Request      [arguments]  ${session}  ${path}  ${body}  ${headers}  ${expresultstatus}=200
-    ${resp}=        Put Request    ${session}  ${path}  ${body}  headers=${headers}
+    ${resp}=        Put On Session    ${session}  ${path}  ${body}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
 
 Send Delete Request      [arguments]  ${session}  ${path}  ${headers}  ${expresultstatus}=200
-    ${resp}=        Put Request    ${session}  ${path}  headers=${headers}
+    ${resp}=        Put On Session    ${session}  ${path}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
