@@ -22,5 +22,14 @@ Test Suite 1 Test Case 2
     [Documentation]     testing variable visibility
     [Tags]  Test
     Log Variables
+    Comment     Lokitetaan globaali muuttuja (pitäisi onnistua)
+    Log     ${GLOBALVARIABLE}
+
+    Comment     Lokitetaan suite muuttuja (pitäisi onnistua)
+    Log     ${suitevariable}
+
+    Comment     Lokitetaan ensimmäisen testitapauksen testi muuttuja (pitäisi epäonnistua)
+    ${isvariablevisible}=    Run Keyword And Return Status   Log     ${testcase_variable}
+    Should Not Be True      ${isvariablevisible}
 
 *** Keywords ***
