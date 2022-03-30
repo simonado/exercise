@@ -14,6 +14,7 @@ Connect To Database And Retrieve Data
 
     ${firstevenets}=    Retrieve 100 First Events
     Loop Results    ${firstevenets}
+    Check List Count    ${firstevenets}     100
 
 *** Keywords ***
 Retrieve 100 First Events
@@ -25,3 +26,7 @@ Loop Results    [Arguments]     ${list}
     FOR     ${i}    IN RANGE  ${listlength}
         Log     ${list[${i}]}
     END
+
+Check List Count    [Arguments]    ${list}     ${count}
+    ${listlength}=  Get Length  ${list}
+    Should Be Equal As Strings   ${listlength}   ${count}
