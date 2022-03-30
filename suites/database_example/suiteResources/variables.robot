@@ -6,4 +6,4 @@ ${database}         postgres
 ${user}             postgres
 ${password}         docker
 # pip install robotframework-databaselibrary
-# pip install psycopg2==2.6.1
+# python -m pip install psycopg2-binary
