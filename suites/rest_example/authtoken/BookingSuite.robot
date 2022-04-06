@@ -47,7 +47,16 @@ Update Book
     Set Global Variable     ${nameafterupdate}
     Should Not Be Equal     ${nameaftercreation}    ${nameafterupdate}
 
-
+Delete Book
+    [documentation]  deletes book which was created
+    [tags]      test
+    # runs keyword and check that the execution status was true
+    ${status}=  Run Keyword And Return Status       Find Books By Id        ${createdbookid}    200
+    Should Be Equal As Strings  	${status}        True
+    Delete Book     ${createdbookid}   201
+    # runs keyword and check that the execution status was false
+    ${status}=  Run Keyword And Return Status       Find Books By Id        ${createdbookid}    200
+    Should Be Equal As Strings  	${status}        False
 *** Keywords ***
 Initialize Sessions
    Create Session  bookingApi  ${APIBASEURLAUTH}

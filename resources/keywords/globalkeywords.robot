@@ -54,7 +54,7 @@ Send Put Request      [arguments]  ${session}  ${path}  ${body}  ${headers}  ${e
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
 
 Send Delete Request      [arguments]  ${session}  ${path}  ${headers}  ${expresultstatus}=200
-    ${resp}=        Put On Session    ${session}  ${path}  headers=${headers}
+    ${resp}=        Delete On Session    ${session}  ${path}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}

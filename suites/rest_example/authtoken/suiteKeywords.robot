@@ -6,9 +6,9 @@ Get Booking Ids     [arguments]
     ${response}=    Send Get Request  bookingApi  /${BOOKINGRESTPATH}/  ${headers}    200
     [RETURN]    ${response}
 
-Find Books By Id     [arguments]     ${id}
+Find Books By Id     [arguments]     ${id}   ${respcode}=200
     ${headers}=     Create Dictionary   accept=application/json
-    ${response}=     Send Get Request    bookingApi  /${BOOKINGRESTPATH}/${id}     ${headers}    200
+    ${response}=     Send Get Request    bookingApi  /${BOOKINGRESTPATH}/${id}     ${headers}    ${respcode}
     [RETURN]    ${response}
 
 Create Book    [arguments]     ${body}   ${respcode}=200
@@ -20,6 +20,10 @@ Update Book    [arguments]  ${id}   ${body}   ${respcode}=200
     ${headers}=     Create Dictionary   accept=application/json     content-type=application/json   Cookie=token=${authtoken}
     ${response}=     Send Put Request     bookingApi    /${BOOKINGRESTPATH}/${id}      ${body}    ${headers}    ${respcode}
     [RETURN]    ${response}
+
+Delete Book    [arguments]  ${id}   ${respcode}=200
+    ${headers}=     Create Dictionary    content-type=application/json   Cookie=token=${authtoken}
+    ${response}=     Send Delete Request     bookingApi    /${BOOKINGRESTPATH}/${id}    ${headers}    ${respcode}
 
 Set Authentication Token    [arguments]     ${username}=admin     ${password}=password123
     ${headers}=     Create Dictionary   content-type=application/json
