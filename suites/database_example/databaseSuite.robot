@@ -16,9 +16,21 @@ Connect To Database And Retrieve Data
     Loop Results    ${firstevenets}
     Check List Count    ${firstevenets}     100
 
+Connect To Database And Retrieve 200 Data
+    [Documentation]     testing database connection 2
+    [Tags]  Test
+
+    ${firstevenets}=    Retrieve 200 First Events
+    Loop Results    ${firstevenets}
+    Check List Count    ${firstevenets}     200
+
 *** Keywords ***
 Retrieve 100 First Events
     ${result}=  query   Select * from events Limit 100
+    [return]    ${result}
+
+Retrieve 200 First Events
+    ${result}=  query   Select * from events Limit 200
     [return]    ${result}
 
 Loop Results    [Arguments]     ${list}
