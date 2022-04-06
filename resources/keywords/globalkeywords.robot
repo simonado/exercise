@@ -31,12 +31,14 @@ Send Post Request      [arguments]  ${session}  ${path}  ${body}  ${headers}  ${
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
+    [RETURN]    ${resp}
 
 Send Post Request Without Rest Path      [arguments]  ${session}  ${body}  ${headers}  ${expresultstatus}=200
-    ${resp}=        Post On Session   ${session}  /  data=${body}  headers=${headers}
+    ${resp}=        Post On Session   ${session}    /    json=${body}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
     Run Keyword And Ignore Error    Log     ${resp.headers}
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
+    [RETURN]    ${resp}
 
 Send Post Request With File      [arguments]  ${session}  ${path}   ${json}  ${file}  ${headers}  ${expresultstatus}=200
     log  ${file}
