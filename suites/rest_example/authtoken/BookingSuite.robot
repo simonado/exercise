@@ -11,7 +11,7 @@ Library    OperatingSystem
 *** Test Cases ***
 Find Booking Ids
     [documentation]  gets all booking ids
-    [tags]      test
+    [tags]      rest_test
     ${books}=   Get Booking Ids
     #set first booking id for next text
     ${firstreturnedbookingid}=      Set Variable    ${books.json()[0]["bookingid"]}
@@ -19,13 +19,13 @@ Find Booking Ids
 
 Find Book By ID
     [documentation]  gets a book by id from the last test
-    [tags]      test
+    [tags]      rest_test
     ${book}=    Find Books By Id        ${firstreturnedbookingid}
     log     ${book.json()}
 
 Create Book
     [documentation]  creates a book using json found from suiteResources
-    [tags]      test
+    [tags]      rest_test
     ${createdbook}=     Create Book     ${createbook}
     ${createdbookid}=   Set Variable    ${createdbook.json()["bookingid"]}
     Set Global Variable      ${createdbookid}
