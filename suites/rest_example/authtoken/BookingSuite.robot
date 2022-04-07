@@ -37,16 +37,26 @@ Create Book
 
 Update Book
     [documentation]  updates book from create book testcase
-    [tags]      rest_test
+    [tags]      test
     ${updatejson}=  evaluate    json.loads('''${createbook}''')    json
     Set To Dictionary   ${updatejson}       firstname=Robot Edited
     ${updatejson}=  evaluate    json.dumps(${updatejson})    json
-    Update Book     ${createdbookid}    ${upf
+    Update Book     ${createdbookid}    ${updatejson}   200
+    ${updatebookreturned}=      Find Books By Id        ${createdbookid}
+    ${nameafterupdate}=   Set Variable  ${updatebookreturned.json()["firstname"]}
+    Set Global Variable     ${nameafterupdate}
     Should Not Be Equal     ${nameaftercreation}    ${nameafterupdate}
 
 Delete Book
-    [documentation]  deletdcheck that the execution status was true
-    ${status}=  fatus was fals
+    [documentation]  deletes book which was created
+    [tags]      test
+    # runs keyword and check that the execution status was true
+    ${status}=  Run Keyword And Return Status       Find Books By Id        ${createdbookid}    200
+    Should Be Equal As Strings  	${status}        True
+    Delete Book     ${createdbookid}   201
+    # runs keyword and check that the execution status was false
+    ${status}=  Run Keyword And Return Status       Find Books By Id        ${createdbookid}    200
+    Should Be Equal As Strings  	${status}        False
 *** Keywords ***
 Initialize Sessions
    Create Session  bookingApi  ${APIBASEURLAUTH}

@@ -10,3 +10,10 @@ ${APIBASEURL}     https://petstore.swagger.io/v2
 ${PETRESTPATH}    pet
 ${STORERESTPATH}    store
 ${USERRESTPATH}    user
+
+# heroku base
+${APIBASEURLAUTH}   https://restful-booker.herokuapp.com
+
+# heroku rest
+${BOOKINGRESTPATH}    booking
+${AUTHRESTPATH}    auth
