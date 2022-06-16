@@ -10,7 +10,7 @@ suite teardown     Disconnect From Database
 *** Test Cases ***
 Connect To Database And Retrieve Data
     [Documentation]     testing database connection
-    [Tags]  Test
+    [Tags]  database_test
 
     ${firstevenets}=    Retrieve 100 First Events
     Loop Results    ${firstevenets}
@@ -18,7 +18,7 @@ Connect To Database And Retrieve Data
 
 Connect To Database And Retrieve 200 Data
     [Documentation]     testing database connection 2
-    [Tags]  Test
+    [Tags]  database_test
 
     ${firstevenets}=    Retrieve 200 First Events
     Loop Results    ${firstevenets}

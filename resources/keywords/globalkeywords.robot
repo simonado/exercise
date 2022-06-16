@@ -40,13 +40,6 @@ Send Post Request Without Rest Path      [arguments]  ${session}  ${body}  ${hea
     Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
     [RETURN]    ${resp}
 
-Send Post Request With File      [arguments]  ${session}  ${path}   ${json}  ${file}  ${headers}  ${expresultstatus}=200
-    log  ${file}
-    ${resp}=        Post On Session    ${session}  ${path}  data=${json}   files=${file}  headers=${headers}
-    Run Keyword And Ignore Error    Log     ${resp.json()}
-    Run Keyword And Ignore Error    Log     ${resp.headers}
-    Should Be Equal As Strings      ${resp.status_code}     ${expresultstatus}
-
 Send Put Request      [arguments]  ${session}  ${path}  ${body}  ${headers}  ${expresultstatus}=200
     ${resp}=        Put On Session    ${session}  ${path}  ${body}  headers=${headers}
     Run Keyword And Ignore Error    Log     ${resp.json()}
